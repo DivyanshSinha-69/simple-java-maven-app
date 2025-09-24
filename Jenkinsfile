@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'M3' // Matches the name in Global Tool Configuration
+    }
     options {
         skipStagesAfterUnstable()
     }
@@ -19,9 +22,9 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
+        stage('Deliver') {
             steps {
-                bat 'jenkins\\scripts\\deliver.bat' // You'll need a .bat version of the script
+                bat 'jenkins\\scripts\\deliver.bat'
             }
         }
     }
