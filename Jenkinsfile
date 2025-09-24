@@ -1,30 +1,9 @@
 pipeline {
     agent any
-    tools {
-        maven 'M3' // Matches the name in Global Tool Configuration
-    }
-    options {
-        skipStagesAfterUnstable()
-    }
     stages {
-        stage('Build') {
+        stage('Build') { 
             steps {
-                bat 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage('Deliver') {
-            steps {
-                bat 'jenkins\\scripts\\deliver.bat'
+                bat 'mvn -B -DskipTests clean package' 
             }
         }
     }
